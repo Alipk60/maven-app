@@ -2,7 +2,7 @@ pipeline {
   environment {
      app = ''
    }
-  agent none
+  agent any
 
   tools {
     maven "Maven"
