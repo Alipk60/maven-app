@@ -93,6 +93,8 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<warName>application</varName>
+					<outputDirectory>/tmp</outputDirectory>	
 				</configuration>
 			</plugin>
 		</plugins>
