@@ -1,6 +1,7 @@
 pipeline {
   environment {
      app = ''
+     latestapp = ''
    }
   agent any
 
@@ -32,7 +33,8 @@ pipeline {
     stage('build Docker Image'){
       steps{
         script{
-          app = docker.build("dshateri/capstone01")
+          app = docker.build("dshateri/capstone01:${env.BUILD_NUMBER}")
+          latestapp = docker.build("dshateri/capstone01:latest")
         }
       }
     }
@@ -51,8 +53,8 @@ pipeline {
       steps{
         script{
           docker.withregistry('https://registry.hub.docker.com','docker-hub-credentials'){
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            app.push()
+            latestapp.push()
           }
         }
       }
