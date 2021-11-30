@@ -52,9 +52,9 @@ pipeline {
    stage('Push Image'){
       steps{
         script{
-          docker.withregistry('https://registry.hub.docker.com','docker-hub-credentials'){
-            app.push()
-            latestapp.push()
+          withDockerRegistry(credentialsId: 'docker-hub-credentials', url: 'https://registry.hub.docker.com') {
+              app.push
+           } 
           }
         }
       }
