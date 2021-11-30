@@ -54,7 +54,6 @@ pipeline {
         script{
           withDockerRegistry(credentialsId: 'docker-hub-credentials', url: 'https://registry.hub.docker.com') {
               app.push
-           } 
           }
         }
       }
