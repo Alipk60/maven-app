@@ -6,10 +6,14 @@ pipeline {
   }
   stages {
     stage('Clone repository'){
-      checkout scm
+      steps {
+        checkout scm
+      }
     }
     stage('build'){
-      sh 'mvn -B -DskipTsts clean package'
+      steps{
+        sh 'mvn -B -DskipTsts clean package'
+      }
     }
   }
 }
