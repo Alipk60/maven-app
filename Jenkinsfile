@@ -39,7 +39,7 @@ pipeline {
       }
     }
 
-   stage('Test Image'){
+    stage('Test Image'){
       steps{
         script{
           app.inside {
@@ -49,7 +49,7 @@ pipeline {
       }
     }
 
-   stage('Push Image'){
+    stage('Push Image'){
       steps{
         script{
           docker.withRegistry('https://registry.hub.docker.com','docker-hub-credentials') {
@@ -59,5 +59,18 @@ pipeline {
         }
       }
     }
+   
+    stage('Remove unused Images'){
+      steps{
+        sh "docker rmi capstone01:${env.BUILD_NUMBER}"
+        sh "docker rmi capstone01:latest"
+      }
+    }
+
+   stage('Deploy Image on Docker Node'){
+    steps{
+      sh "docker -H ubuntu@172.31.93.62 run -d -p 8080:8080 dshateri\capstone01:latest"
+    }
+   }
   }
 }
