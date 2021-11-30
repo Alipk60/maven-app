@@ -1,5 +1,15 @@
-node {
-  stage('Clone repository'){
-    checkout scm
+pipeline {
+  agent any
+  tools {
+    maven "maven"
+    jdk "JDK11"
+  }
+  stages {
+    stage('Clone repository'){
+      checkout scm
+    }
+    stage('build'){
+      sh 'mvn -B -DskipTsts clean package'
+    }
   }
 }
