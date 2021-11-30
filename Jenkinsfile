@@ -6,11 +6,11 @@ node {
     }
 
     stage('build'){
-      mvn -B -DskipTsts clean package
+      sh -c 'mvn -B -DskipTsts clean package'
     }
 
     stage('Test'){
-      mvn test
+      sh -c 'mvn test'
     }
 
     stage('build Docker Image'){
