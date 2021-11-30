@@ -62,8 +62,8 @@ pipeline {
    
     stage('Remove unused Images'){
       steps{
-        sh "docker rmi capstone01:${env.BUILD_NUMBER}"
-        sh "docker rmi capstone01:latest"
+        sh "docker rmi dshateri/capstone01:${env.BUILD_NUMBER}"
+        sh "docker rmi dshateri/capstone01:latest"
       }
     }
 
