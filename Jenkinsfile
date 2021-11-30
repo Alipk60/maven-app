@@ -1,6 +1,6 @@
 pipeline {
   environment {
-     app
+     app = ''
    }
   agent none
 
