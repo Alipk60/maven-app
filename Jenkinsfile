@@ -38,17 +38,21 @@ pipeline {
 
    stage('Test Image'){
       steps{
-        app.inside {
-          sh 'echo "Tests Passed"'
+        script{
+          app.inside {
+            sh 'echo "Tests Passed"'
+          }
         }
       }
     }
 
    stage('Push Image'){
       steps{
-        docker.withregistry('https://registry.hub.docker.com','docker-hub-credentials'){
-         app.push("${env.BUILD_Number}")
-         app.push("latest")
+        script{
+          docker.withregistry('https://registry.hub.docker.com','docker-hub-credentials'){
+           app.push("${env.BUILD_Number}")
+           app.push("latest")
+          }
         }
       }
     }
