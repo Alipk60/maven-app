@@ -5,6 +5,7 @@ pipeline {
   agent any
 
   tools {
+    git "myGit"
     maven "Maven"
     jdk "JDK11"
   }
