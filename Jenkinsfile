@@ -1,32 +1,61 @@
-node {
-  def app
+pipeline {
+  environment {
+     app = ''
+   }
+  agent any
 
+  tools {
+    git "myGit"
+    maven "Maven"
+    jdk "JDK11"
+  }
+
+  stages {
     stage('Clone repository'){
-      checkout scm
+      steps {
+        checkout scm
+      }
     }
 
     stage('build'){
-      sh -c 'mvn -B -DskipTsts clean package'
+      steps{
+        sh 'mvn -B -DskipTsts clean package'
+      }
     }
 
     stage('Test'){
-      sh -c 'mvn test'
+      steps{
+        sh 'mvn test'
+      }
     }
 
     stage('build Docker Image'){
-      app = docker.build("dshateri/capstone01")
-    }
-
-    stage('Test Image'){
-      app.inside {
-        sh 'echo "Tests Passed"'
+      steps{
+        script{
+          app = docker.build("dshateri/capstone01")
+        }
       }
     }
 
-     stage('Push Image'){
-        docker.withregistry('https://registry.hub.docker.com','docker-hub-credentials'){
-          app.push("${env.BUILD_NUMBER}")
-          app.push("latest")
+   stage('Test Image'){
+      steps{
+        script{
+          app.inside {
+            sh 'echo "Tests Passed"'
+          }
+        }
+      }
+    }
+
+   stage('Push Image'){
+      steps{
+        script{
+          docker.withregistry('https://registry.hub.docker.com','docker-hub-credentials'){
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+          }
+        }
       }
     }
   }
+}
