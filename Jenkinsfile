@@ -1,5 +1,7 @@
 pipeline {
-  def app
+  environment {
+     app
+   }
   agent none
 
   tools {
