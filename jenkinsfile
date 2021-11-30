@@ -1,6 +1,6 @@
 pipeline {
   stage('Clone repository'){
-    checkut scm
+    checkout scm
   }
   stage('Compile') {          	 
     steps {               	 
