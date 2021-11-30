@@ -32,7 +32,7 @@ pipeline {
     stage('build Docker Image'){
       steps{
         script{
-          app = docker.build("dshateri/capstone_project01")
+          app = docker.build("dshateri/capstone01")
         }
       }
     }
