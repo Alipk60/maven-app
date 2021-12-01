@@ -69,7 +69,7 @@ pipeline {
 
    stage('Deploy Image on Docker Node'){
     steps{
-      sh "docker -H ssh://jenkins@172.31.85.174 run -d -p 8080:8080 dshateri/capstone01:latest"
+      sh "docker -H ssh://jenkins@172.31.90.212 run -d -p 8080:8080 dshateri/capstone01:latest"
     }
    }
   }
