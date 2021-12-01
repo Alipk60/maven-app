@@ -1,0 +1,7 @@
+admin_user_pass: "P@ssword01"
+jenkins_plugins:
+  - 'Timestamper'
+  - 'Pipeline'
+  - 'Git'
+  - 'docker-workflow'
+  - 'pipeline-stage-view'
