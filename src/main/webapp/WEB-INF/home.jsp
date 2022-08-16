@@ -12,7 +12,7 @@
 </head>
 </head>
 <body>
- <h1 align="center">Caltech Simplilearn June 2021</h1>
+ <h1 align="center">Caltech Simplilearn</h1>
 <h1 align="center">Congrats - your app deployed on Tomcat!</h1>
 <h2 align="center">This is cool huh?!</h2>
 </body>
