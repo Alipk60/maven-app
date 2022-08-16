@@ -33,8 +33,8 @@ pipeline {
     stage('build Docker Image'){
       steps{
         script{
-          app = docker.build("apourtarki/capstone01:${env.BUILD_NUMBER}")
-          latestapp = docker.build("apourtarki/capstone01:latest")
+          app = docker.build("alipk60/capstone01:${env.BUILD_NUMBER}")
+          latestapp = docker.build("alipk60/capstone01:latest")
         }
       }
     }
@@ -62,14 +62,14 @@ pipeline {
    
     stage('Remove unused Images'){
       steps{
-        sh "docker rmi dshateri/capstone01:${env.BUILD_NUMBER}"
-        sh "docker rmi dshateri/capstone01:latest"
+        sh "docker rmi alipk60/capstone01:${env.BUILD_NUMBER}"
+        sh "docker rmi alipk60/capstone01:latest"
       }
     }
 
    stage('Deploy Image on Docker Node'){
     steps{
-      sh "docker -H ssh://jenkins@172.31.90.212 run -d -p 8080:8080 dshateri/capstone01:latest"
+      sh "docker -H ssh://jenkins@172.31.90.212 run -d -p 8080:8080 alipk60/capstone01:latest"
     }
    }
   }
