@@ -33,8 +33,8 @@ pipeline {
     stage('build Docker Image'){
       steps{
         script{
-          app = docker.build("dshateri/capstone01:${env.BUILD_NUMBER}")
-          latestapp = docker.build("dshateri/capstone01:latest")
+          app = docker.build("apourtarki/capstone01:${env.BUILD_NUMBER}")
+          latestapp = docker.build("apourtarki/capstone01:latest")
         }
       }
     }
